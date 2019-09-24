@@ -2,7 +2,7 @@ import time
 from numba import njit
 
 @njit
-def bench(n, p0):
+def nth(n, p0):
     s1 = set()
     s1.add(p0)
     s2 = set()
@@ -27,5 +27,5 @@ def bench(n, p0):
 
     return s1
 
-t = time.time(); print("Time including JIT compilation: ", len(bench(2000, (0, 0)))); print(time.time() - t)
-t = time.time(); print("Time without JIT compilation: ", len(bench(2000, (0, 0)))); print(time.time() - t)
+t = time.time(); print("Time including JIT compilation: ", len(nth(2000, (0, 0)))); print(time.time() - t)
+t = time.time(); print("Time without JIT compilation: ", len(nth(2000, (0, 0)))); print(time.time() - t)

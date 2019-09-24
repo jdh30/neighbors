@@ -1,11 +1,12 @@
 use fnv::FnvHashSet;
+type Set = FnvHashSet<(i32, i32)>;
 
-fn main() {
-    let mut s1:FnvHashSet<(i32, i32)> = FnvHashSet::with_capacity_and_hasher(8000, Default::default());
-    let mut s2:FnvHashSet<(i32, i32)> = FnvHashSet::with_capacity_and_hasher(8000, Default::default());
-    let mut s0:FnvHashSet<(i32, i32)> = FnvHashSet::with_capacity_and_hasher(8000, Default::default());
-    s1.insert((0, 0));
-    for _ in 0..2000 {
+fn nth(n: i32, p0: (i32, i32)) -> Set {
+    let mut s1:Set = FnvHashSet::with_capacity_and_hasher(n as usize * 4, Default::default());
+    let mut s2:Set = FnvHashSet::with_capacity_and_hasher(n as usize * 4, Default::default());
+    let mut s0:Set = FnvHashSet::with_capacity_and_hasher(n as usize * 4, Default::default());
+    s1.insert(p0);
+    for _ in 0..n {
         for p in &s1 {
             let mut add = |p: (i32, i32)| {
                 if !s1.contains(&p) && !s2.contains(&p) {
@@ -24,5 +25,10 @@ fn main() {
         s2 = temp1;
         s0 = temp2;
     }
+    s1
+}
+
+fn main() {
+    let s1 = nth(2000, (0, 0));
     println!("{}", s1.len());
 }
