@@ -1,0 +1,8 @@
+[package]
+name = "neighbors"
+version = "0.1.0"
+authors = ["Fernand Pajot <fernand@epigram.me>"]
+edition = "2018"
+
+[dependencies]
+fnv = "1.0.3"
